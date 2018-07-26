@@ -1,0 +1,121 @@
+<form id="couponForm" name="couponForm"
+class="form-horizontal" style="margin-left: 20px"
+#couponForm="ngForm">
+
+        <div class="form-group">
+            <label for="inputTitle" class="control-label col-sm-2">Title</label>
+
+            <div class="col-sm-6">
+                <input class="form-control" placeholder="Enter title" 
+                type="text" id="title" name = "title"
+                required pattern="^[A-Za-z][a-zA-Z0-9\s]{2,30}$"
+                [(ngModel)] = "coupon.title" #title="ngModel"/>
+
+                <div *ngIf="title.invalid && (title.dirty || title.touched)"
+                class="alert alert-danger">
+
+             <div *ngIf="title.errors.pattern">
+            Invalid title. Name must include 3 to 30 characters (letters or numbers). First character must be a letter.
+             </div>
+             
+           </div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="inputStartDate" class="control-label col-sm-2">Start Date</label>
+            <div class="col-sm-6">
+                <input class="form-control" placeholder="Enter start date"
+                [(ngModel)] = "coupon.startDate"
+                type="date" id="inputStartDate" name="inputStartDate" required />
+            </div>
+        </div>
+     
+     
+        <div class="form-group">
+         <label for="inputEndDate" class="control-label col-sm-2">End Date</label>
+         <div class="col-sm-6">
+             <input class="form-control" placeholder="Enter end date"
+             [(ngModel)] = "coupon.endDate"
+             type="date" id="inputEndDate" name="inputEndDate" required/>
+         </div>
+     </div>
+     
+     
+     <div class="form-group">
+       <label for="inputAmount" class="control-label col-sm-2">Amount</label>
+       <div class="col-sm-6">
+           <input class="form-control" placeholder="Enter amount"
+           [(ngModel)] = "coupon.amount"
+           type="number" id="inputAmount" name="inputAmount" min="1" required/>
+       </div>
+     </div>
+
+
+
+     <div class="form-group">
+        <label for="inputType" class="control-label col-sm-2">Type</label>
+
+     <div class="col-sm-6">
+      <select   class="form-control" id="selectType" name="selectType" 
+      (change)="getCouponTypes()"
+      [(ngModel)] = "coupon.type" required>
+      <option value ="" disabled selected>--Select coupon type--</option> 
+      <option value={{t}} *ngFor="let t of _types">{{t}}</option>
+       </select>
+       </div>
+
+    </div>
+
+
+
+     <div class="form-group">
+       <label for="inputPrice" class="control-label col-sm-2">Price</label>
+       <div class="col-sm-6">
+           <input class="form-control" placeholder="Enter price"
+           [(ngModel)] = "coupon.price"
+           type="number" id="inputPrice" name="inputPrice" min="0"  step="0.01" required/>
+       </div>
+     </div>
+     
+     
+     <div class="form-group">
+       <label for="inputMessage" class="control-label col-sm-2">Message</label>
+       <div class="col-sm-6">
+           <textarea class="form-control" rows="5" placeholder="Enter message"
+           [(ngModel)] = "coupon.message" 
+           id="inputMessage" name="inputMessage" required> </textarea>
+       </div>
+     </div>
+     
+      
+     <div class="form-group">
+         <label for="inputImage" class="control-label col-sm-2">Image</label>
+      <div class="col-sm-6">
+         <input class="form-control-file"
+         accept="image/*" (change)="readUrl($event)"
+         type="file" id="inputImage" name= "InputImage" />
+         <br>
+         <img [src]="url |safe" height="200"  alt="Image preview">  
+        
+             </div> 
+       </div>
+   
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success"
+            [disabled]="couponForm.invalid"
+            (click)="createCoupon()"> Create
+        </button>
+        </div>
+    </div>
+</form>
+
+
+<!--pre>
+coupon: {{coupon | json}}
+
+</pre-->
+

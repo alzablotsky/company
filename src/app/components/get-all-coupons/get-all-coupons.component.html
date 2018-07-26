@@ -1,0 +1,34 @@
+<div class="container">
+
+  <table style="margin-left: 10px" class="table table-striped table-bordered">
+  <thead>
+      <tr>
+          <th>Id</th>
+          <th>Title</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Amount</th>
+          <th>Type</th>
+          <th>Price</th>
+          <th>Message</th>
+          <th>Image</th>
+        </tr>
+  </thead>
+  <tbody>
+        <tr *ngFor="let c of _coupons">
+                <td>{{c.id}}</td>
+                <td>{{c.title}}</td>
+                <td>{{c.startDate| date:'dd/MM/yyyy'}}</td>
+                <td>{{c.endDate| date:'dd/MM/yyyy'}}</td>
+                <td>{{c.amount}}</td>
+                <td>{{c.type}}</td>
+                <td>{{c.price| number: '1.2-2'}}</td>
+                <td>{{c.message}}</td>
+                <td><img [src]="'data:image/jpg;base64,'+c.image |safe"
+                    alt="" height ="80" width ="100"></td>  
+             </tr>
+  </tbody>
+  </table>
+  </div>
+
+ 

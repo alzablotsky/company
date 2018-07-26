@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<nav class="navbar navbar-default">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li>
+                <div class="col-md-2">
+                <a routerLink="/createcoupon" class="btn btn-success" role="button">Create Coupon</a>
+                </div>
+            </li>
+
+            <li>
+                    <div class="col-md-2">
+                    <a routerLink="/updatecoupon" class="btn btn-warning" role="button">Update Coupon</a>
+                    </div>
+            </li>
+
+            <li>
+                    <div class="col-md-2">
+                    <a routerLink="/removecoupon" class="btn btn-danger" role="button">Remove Coupon</a>
+                    </div>
+            </li>
+
+            <li>
+                    <div class="col-md-2">
+                    <a routerLink="/getcoupon" class="btn btn-primary" role="button">Get Coupon</a>
+                    </div>
+            </li>
+
+           <li>
+           <div class="col-md-2">
+            <a routerLink="/getallcoupons" class="btn btn-info" role="button">Get All Coupons</a>
+            </div>
+            </li>
+
+<hr>
+
+
+<li>
+        <div class="col-md-2">
+        <a routerLink="/getcouponsbytype" class="btn btn-info"  role="button">Get Coupons By Type</a>
+        </div>
+    </li>
+
+    <li>
+            <div class="col-md-2">
+            <a routerLink="/getcouponsbyprice" class="btn btn-primary" role="button">Get Coupons By Price</a>
+            </div>
+    </li>
+
+    <li>
+            <div class="col-md-2">
+            <a routerLink="/getcouponsbyenddate" class="btn btn-info" role="button">Get Coupons By End Date</a>
+            </div>
+    </li>
+
+   </ul>
+    </div>
+</nav>
+
+<div id="div-router">
+        <router-outlet></router-outlet>
+    </div>
+
+
+

@@ -1,0 +1,64 @@
+<div class="container">
+
+ <div class="row">
+
+<form class="form-horizontal" style="margin-left: 20px">
+        
+<div class="form-group">
+<label for="inputType" class="control-label col-sm-2">Type</label>
+                
+<div class="col-sm-6">
+<select class="form-control" name="selectType" id = "selectType" 
+        (change)="getAllCouponsByType()"
+        [(ngModel)] = "type"
+        #selectType="ngModel">
+        <option value="" disabled selected>--Select coupon type--</option> 
+        <option value={{c.type}} *ngFor="let c of _coupons">{{c.type}}</option>
+        </select>
+        </div>
+
+        </div>
+        </form>
+        </div>
+        
+         <div class="row">
+        <table style="margin-left: 10px" class="table table-striped table-bordered">
+        <thead>
+                <tr>
+                        <th>Id</th>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                        <th>Message</th>
+                        <th>Image</th>
+                      </tr>
+                </thead>
+                <tbody>
+                      <tr *ngFor="let c of _selectedCoupons">
+                         <td>{{c.id}}</td>
+                         <td>{{c.title}}</td>
+                         <td>{{c.startDate| date:'dd/MM/yyyy'}}</td>
+                         <td>{{c.endDate| date:'dd/MM/yyyy'}}</td>
+                         <td>{{c.amount}}</td>
+                         <td>{{c.type}}</td>
+                         <td>{{c.price| number: '1.2-2'}}</td>
+                         <td>{{c.message}}</td>
+                         <td><img [src]="'data:image/jpg;base64,'+c.image |safe"
+                                alt="" height ="80" width ="100"></td>         
+                       </tr>
+                </tbody>
+
+                </table>
+                </div>
+         </div> 
+
+
+         <!--pre>
+          type: {{type}}
+          <br>
+          selected coupons: {{_selectedCoupons| json}}       
+         </pre-->
+

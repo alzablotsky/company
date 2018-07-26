@@ -1,0 +1,125 @@
+<form id="couponForm" name="couponForm"
+class="form-horizontal" style="margin-left: 20px"
+#couponForm="ngForm">
+
+            <div class="form-group">
+                <label for="selectId" class="control-label col-sm-2">Id</label>
+        
+             <div class="col-sm-6">
+              <select class="form-control" name="selectId" id = "selectId"
+              required
+              (change)="getCoupon()"
+              [(ngModel)] = "id"
+              #selectId="ngModel" >
+              <option value ="" disabled selected>--Select coupon ID--</option> 
+              <option value={{c.id}} *ngFor="let c of _coupons">{{c.id}}</option>
+               </select>
+    
+               <div *ngIf="selectId.invalid && (selectId.dirty || selectId.touched)"
+               class="alert alert-danger">
+    
+            </div>
+        </div>
+    </div>
+
+            <div class="form-group">
+                <label for="inputTitle" class="control-label col-sm-2">Title</label>
+                <div class="col-sm-6">
+                    <input class="form-control"  
+                    [(ngModel)] = "coupon.title"
+                    type="text" id="inputTitle" name = "inputTitle" readonly />
+                </div>
+            </div>
+
+
+         <div class="form-group">
+            <label for="inputStartDate" class="control-label col-sm-2">Start Date</label>
+            <div class="col-sm-6">
+                <input class="form-control" 
+                type="date" [ngModel]="coupon.startDate | date:'yyyy-MM-dd'" 
+                (ngModelChange)="coupon.startDate = $event"
+                id="inputStartDate" name="inputStartDate" readonly/>
+            </div>
+        </div>
+
+        <div class="form-group">
+                <label for="inputEndDate" class="control-label col-sm-2">End Date</label>
+                <div class="col-sm-6">
+                    <input class="form-control" 
+                    type="date" [ngModel]="coupon.endDate | date:'yyyy-MM-dd'" 
+                    (ngModelChange)="coupon.endDate = $event"
+                    id="inputEndDate" name="inputEndDate" readonly/>
+                </div>
+            </div>
+
+
+  
+     
+     <div class="form-group">
+       <label for="inputAmount" class="control-label col-sm-2">Amount</label>
+       <div class="col-sm-6">
+           <input class="form-control" 
+           [(ngModel)] = "coupon.amount"
+           type="number" id="inputAmount" name="inputAmount" readonly/>
+       </div>
+     </div>
+
+
+     <div class="form-group">
+        <label for="inputType" class="control-label col-sm-2">Type</label>
+        <div class="col-sm-6">
+           <input class="form-control" 
+           [(ngModel)] = "coupon.type" 
+           type="text" id="inputType" name="inputType" readonly> 
+        </div>
+      </div>
+
+
+     <div class="form-group">
+       <label for="inputPrice" class="control-label col-sm-2">Price</label>
+       <div class="col-sm-6">
+           <input class="form-control" 
+           [(ngModel)] = "coupon.price"
+           type="number" id="inputPrice" name="inputPrice" min="0"  step="0.01" readonly/>
+       </div>
+     </div>
+     
+     
+     <div class="form-group">
+       <label for="inputMessage" class="control-label col-sm-2">Message</label>
+       <div class="col-sm-6">
+           <textarea class="form-control" rows="5" 
+           [(ngModel)] = "coupon.message" 
+           id="inputMessage" name="inputMessage" readonly> </textarea>
+       </div>
+     </div>
+     
+
+       <div class="form-group">
+        <label for="inputImage" class="control-label col-sm-2">Image</label>
+     <div class="col-sm-6">
+       <input  type="image"  
+       [src]="'data:image/jpg;base64,'+coupon.image |safe" 
+       alt=""  height="200" 
+       id="inputImage" name= "InputImage"readonly>
+        </div> 
+      </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-danger"
+            [disabled]="couponForm.invalid"
+            (click)="removeCoupon()" 
+            >Remove</button>
+        </div>
+    </div>
+
+
+
+</form>
+
+<!--pre>
+coupon: {{coupon | json}}
+</pre-->
+
