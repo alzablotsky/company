@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
 
   public name: string;
 
-  public url = "http://localhost:8080/login.html";
+  public url ='../index.html';
 
   constructor(private _service: CouponService) { }
 
